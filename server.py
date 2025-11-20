@@ -9,12 +9,17 @@ def sent_detector():
     text_to_analyze = request.args.get('textToAnalyze')
 
     response=emotion_detector(text_to_analyze)
-    formatted_response = f'For the given statement, the system response is \'anger\': {response["anger"]}, \'disgust\': {response["disgust"]}, \'fear\': {response["fear"]}, \'joy\': {response["joy"]} and \'sadness\': {response["sadness"]}. The dominant emotion is {response["dominant_emotion"]}.'
-    return formatted_response 
+    dominant_check=response['dominant_emotion']
+
+    if dominant_check is None:
+        return "Invalid text! Please try again!."
+    else:
+        formatted_response = f'For the given statement, the system response is \'anger\': {response["anger"]}, \'disgust\': {response["disgust"]}, \'fear\': {response["fear"]}, \'joy\': {response["joy"]} and \'sadness\': {response["sadness"]}. The dominant emotion is {response["dominant_emotion"]}.'
+        return formatted_response 
 
 @app.route("/")
 def render_index_page():
     return render_template('index.html')
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=5004)
