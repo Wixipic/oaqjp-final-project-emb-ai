@@ -23,7 +23,7 @@ def emotion_detector(text_to_analyze):
 
    #Get the dominant emotion according to max score values 
     dominant_emotion = max(emotion_scores, key=emotion_scores.get)
-    emotion_scores["dominant emotion"] = dominant_emotion
+    emotion_scores["dominant_emotion"] = dominant_emotion
     
     # Returning a dictionary containing emotion analysis results
     return emotion_scores
